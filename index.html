@@ -6,31 +6,32 @@
     <title>Startup Checklist</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #eef3f9;
+            background-color: #f5f7fa;
         }
         .form-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #ffffff, #f9f9fb);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
         header {
             text-align: center;
             margin-bottom: 20px;
         }
         header img {
-            width: 150px;
+            width: 160px;
             margin-bottom: 10px;
         }
         header h1 {
             margin: 0;
-            font-size: 26px;
-            color: #333;
+            font-size: 28px;
+            color: #2a3f5f;
+            font-weight: bold;
         }
         header .date {
             font-size: 16px;
@@ -44,17 +45,17 @@
         }
         th, td {
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e6ed;
             text-align: left;
         }
         th {
-            background-color: #f7f9fc;
+            background-color: #edf2f7;
             font-weight: bold;
         }
         select, input {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 10px;
+            border: 1px solid #ccd6e6;
+            border-radius: 6px;
             width: 100%;
             box-sizing: border-box;
         }
@@ -62,19 +63,20 @@
             display: none;
         }
         .submit-button {
-            display: inline-block;
+            display: block;
+            width: 100%;
             background-color: #007BFF;
             color: white;
-            padding: 12px 20px;
-            font-size: 16px;
+            padding: 15px;
+            font-size: 18px;
             font-weight: bold;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             text-align: center;
             transition: background-color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .submit-button:hover {
             background-color: #0056b3;
@@ -136,9 +138,9 @@
                         <td colspan="2"><input type="text" name="department" placeholder="Enter department/area" required></td>
                     </tr>
                     <tr>
-                        <td>Did the previous shift leave reserves?</td>
+                        <td>Are all box machines in good condition?</td>
                         <td>
-                            <select name="reserves" onchange="toggleChecklist(this, 'reservesChecklist')" required>
+                            <select name="box_machines" onchange="toggleChecklist(this, 'boxMachineChecklist', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -146,18 +148,19 @@
                         </td>
                         <td></td>
                     </tr>
-                    <tr id="reservesChecklist" class="hidden">
-                        <td>Specify Reserves</td>
+                    <tr id="boxMachineChecklist" class="hidden">
+                        <td>Specify Box Machines</td>
                         <td colspan="2">
-                            <label><input type="checkbox" name="reserve_boxes"> Boxes</label>
-                            <label><input type="checkbox" name="reserve_box_hands"> Box Hands</label>
-                            <label><input type="checkbox" name="reserve_wraps"> Wraps</label>
+                            <label><input type="checkbox" name="box_machine_1" onchange="toggleOtherField(this, 'boxMachine1Issue')"> Box Machine #1</label>
+                            <input type="text" id="boxMachine1Issue" name="box_machine_1_issue" placeholder="Specify issue for Box Machine #1" class="hidden">
+                            <label><input type="checkbox" name="box_machine_2" onchange="toggleOtherField(this, 'boxMachine2Issue')"> Box Machine #2</label>
+                            <input type="text" id="boxMachine2Issue" name="box_machine_2_issue" placeholder="Specify issue for Box Machine #2" class="hidden">
                         </td>
                     </tr>
                     <tr>
-                        <td>Do we have chemicals?</td>
+                        <td>Are the glue tanks properly filled?</td>
                         <td>
-                            <select name="chemicals" onchange="toggleChecklist(this, 'chemicalsChecklist')" required>
+                            <select name="glue_tanks" onchange="toggleChecklist(this, 'glueTankChecklist', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -165,50 +168,14 @@
                         </td>
                         <td></td>
                     </tr>
-                    <tr id="chemicalsChecklist" class="hidden">
-                        <td>Specify Chemicals</td>
+                    <tr id="glueTankChecklist" class="hidden">
+                        <td>Specify Glue Tanks</td>
                         <td colspan="2">
-                            <label><input type="checkbox" name="chemical_707"> 707</label>
-                            <label><input type="checkbox" name="chemical_knocker_loose"> Knocker Loose</label>
-                            <label><input type="checkbox" name="chemical_air_lubricant"> Air Lubricant Oil</label>
-                            <label><input type="checkbox" name="chemical_other" onchange="toggleOtherField(this, 'otherChemicalField')"> Other</label>
-                            <input type="text" id="otherChemicalField" name="chemical_other_specify" placeholder="Specify other chemical" class="hidden">
+                            <label><input type="checkbox" name="glue_tank_1"> Glue Tank Box Machine #1</label>
+                            <label><input type="checkbox" name="glue_tank_2"> Glue Tank Box Machine #2</label>
+                            <label><input type="checkbox" name="glue_tank_3"> Glue Tank Box Machine #3</label>
+                            <label><input type="checkbox" name="glue_tank_4"> Glue Tank Box Machine #4</label>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Is the conveyor working fine?</td>
-                        <td>
-                            <select name="conveyor" onchange="toggleChecklist(this, 'conveyorIssues', 'No')" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr id="conveyorIssues" class="hidden">
-                        <td>Specify Conveyor Issues</td>
-                        <td colspan="2">
-                            <label><input type="checkbox" name="conveyor_issue_misaligned_belt"> Misaligned Belt</label>
-                            <label><input type="checkbox" name="conveyor_issue_obstruction"> Obstruction</label>
-                            <label><input type="checkbox" name="conveyor_issue_motor"> Motor Issue</label>
-                            <label><input type="checkbox" name="conveyor_issue_noise"> Unusual Noise</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Are all lines in good condition?</td>
-                        <td>
-                            <select name="lines" onchange="toggleChecklist(this, 'linesIssues', 'No')" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr id="linesIssues" class="hidden">
-                        <td>Specify Line Issues</td>
-                        <td colspan="2"><input type="text" name="lines_issues" placeholder="Describe issues"></td>
                     </tr>
                     <tr>
                         <td>Is there any other hazard?</td>
