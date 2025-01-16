@@ -12,7 +12,7 @@
             background-color: #f4f4f9;
         }
         .form-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background: #fff;
@@ -23,144 +23,152 @@
             text-align: center;
             color: #333;
         }
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-weight: bold;
-        }
-        input[type="text"],
-        select,
-        textarea {
+        table {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0 15px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f9;
+        }
+        select {
+            padding: 6px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        .options {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .options input {
-            margin-right: 5px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .thumbs {
-            font-size: 18px;
+        .thumb {
+            display: inline-block;
+            font-size: 20px;
             margin-left: 10px;
         }
+        .thumb.green {
+            color: green;
+        }
+        .thumb.red {
+            color: red;
+        }
+        .submit-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        .submit-button:active {
+            transform: translateY(0);
+            background-color: #3e8e41;
+        }
     </style>
+    <script>
+        function updateThumbs(selectElement) {
+            const row = selectElement.closest('tr');
+            const thumb = row.querySelector('.thumb');
+            if (selectElement.value === 'Good' || selectElement.value === 'Yes') {
+                thumb.textContent = '👍';
+                thumb.className = 'thumb green';
+            } else if (selectElement.value === 'Not Good' || selectElement.value === 'No') {
+                thumb.textContent = '👎';
+                thumb.className = 'thumb red';
+            } else {
+                thumb.textContent = '';
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="form-container">
         <h1>Inventory Checklist</h1>
-        <form action="https://your-email-or-server-endpoint" method="POST">
-
-            <label for="cleanliness">Overall cleanliness of the Box Room:</label>
-            <div class="options">
-                <label><input type="radio" name="cleanliness" value="Good" required> Good 👍</label>
-                <label><input type="radio" name="cleanliness" value="Not Good"> Not Good 👎</label>
-            </div>
-
-            <label>Did the previous shift leave reserves?</label>
-            <div class="options">
-                <label><input type="radio" name="reserves" value="Yes" required> Yes</label>
-                <label><input type="radio" name="reserves" value="No"> No</label>
-            </div>
-
-            <label>Are there any rework wraps left over?</label>
-            <div class="options">
-                <label><input type="radio" name="rework_wraps" value="Yes" required> Yes</label>
-                <label><input type="radio" name="rework_wraps" value="No"> No</label>
-            </div>
-
-            <label>Do we have materials for:</label>
-            <div class="options">
-                <label><input type="checkbox" name="materials" value="Jumbo Boxes"> Jumbo Boxes</label>
-                <label><input type="checkbox" name="materials" value="Small Boxes"> Small Boxes</label>
-            </div>
-
-            <label>Do we have chemicals (707, Knocker Loose, Air Lubricant)?</label>
-            <div class="options">
-                <label><input type="radio" name="chemicals" value="Yes" required> Yes</label>
-                <label><input type="radio" name="chemicals" value="No"> No</label>
-            </div>
-
-            <label>Do we have white cups for refreshments?</label>
-            <div class="options">
-                <label><input type="radio" name="cups" value="Yes" required> Yes</label>
-                <label><input type="radio" name="cups" value="No"> No</label>
-            </div>
-
-            <label>Is the trash emptied?</label>
-            <div class="options">
-                <label><input type="radio" name="trash" value="Yes" required> Yes</label>
-                <label><input type="radio" name="trash" value="No"> No</label>
-            </div>
-
-            <label>Are cardboards on the floor in good condition?</label>
-            <div class="options">
-                <label><input type="radio" name="cardboard" value="Yes" required> Yes</label>
-                <label><input type="radio" name="cardboard" value="No"> No</label>
-            </div>
-
-            <label>Is there glue in the tanks (Box Machines 1-4)?</label>
-            <div class="options">
-                <label><input type="checkbox" name="glue_tanks" value="Box Machine 1"> Box Machine 1</label>
-                <label><input type="checkbox" name="glue_tanks" value="Box Machine 2"> Box Machine 2</label>
-                <label><input type="checkbox" name="glue_tanks" value="Box Machine 3"> Box Machine 3</label>
-                <label><input type="checkbox" name="glue_tanks" value="Box Machine 4"> Box Machine 4</label>
-            </div>
-
-            <label>Are all box machines working fine?</label>
-            <div class="options">
-                <label><input type="radio" name="box_machines" value="Yes" required> Yes</label>
-                <label><input type="radio" name="box_machines" value="No"> No</label>
-            </div>
-            <textarea name="box_issues" placeholder="If not, specify issues (glue, speed, cleanliness, materials, mechanical)"></textarea>
-
-            <label>Is the conveyor working fine?</label>
-            <div class="options">
-                <label><input type="radio" name="conveyor" value="Yes" required> Yes</label>
-                <label><input type="radio" name="conveyor" value="No"> No</label>
-            </div>
-            <select name="conveyor_issues">
-                <option value="">-- Select Conveyor Issue --</option>
-                <option value="Misaligned Belt">Misaligned Belt</option>
-                <option value="Motor Issue">Motor Issue</option>
-                <option value="Obstruction">Obstruction</option>
-                <option value="Other">Other</option>
-            </select>
-
-            <label>Are all lines working fine?</label>
-            <div class="options">
-                <label><input type="radio" name="lines" value="Yes" required> Yes</label>
-                <label><input type="radio" name="lines" value="No"> No</label>
-            </div>
-            <textarea name="line_issues" placeholder="If not, specify issues (e.g., stuck boxes, broken parts, static rollers)"></textarea>
-
-            <label>Is there any additional hazard?</label>
-            <textarea name="hazards" placeholder="Describe additional hazards if any"></textarea>
-
-            <label>Is the safety topic of the week available?</label>
-            <div class="options">
-                <label><input type="radio" name="safety_topic" value="Yes" required> Yes</label>
-                <label><input type="radio" name="safety_topic" value="No"> No</label>
-            </div>
-
-            <button type="submit">Submit Checklist</button>
+        <form action="https://formspree.io/f/mdkkjgrr" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Overall cleanliness of the Box Room</td>
+                        <td>
+                            <select name="cleanliness" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Good">Good</option>
+                                <option value="Not Good">Not Good</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="cleanliness_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Did the previous shift leave reserves?</td>
+                        <td>
+                            <select name="reserves" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="reserves_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Are there any rework wraps left over?</td>
+                        <td>
+                            <select name="rework_wraps" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="rework_wraps_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Do we have chemicals (707, Knocker Loose, Air Lubricant)?</td>
+                        <td>
+                            <select name="chemicals" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="chemicals_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Is the conveyor working fine?</td>
+                        <td>
+                            <select name="conveyor" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="conveyor_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="submit-button">Submit Checklist</button>
         </form>
     </div>
 </body>
