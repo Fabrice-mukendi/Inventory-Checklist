@@ -50,7 +50,7 @@
         th {
             background-color: #f4f4f9;
         }
-        select {
+        select, input {
             padding: 6px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -130,6 +130,14 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>Name of Person Completing Form</td>
+                        <td colspan="2"><input type="text" name="person_name" placeholder="Enter your name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Department/Area</td>
+                        <td colspan="2"><input type="text" name="department" placeholder="Enter department/area" required></td>
+                    </tr>
+                    <tr>
                         <td>Overall cleanliness of the Box Room</td>
                         <td>
                             <select name="cleanliness" onchange="updateThumbs(this)" required>
@@ -142,88 +150,67 @@
                         <td><input type="text" name="cleanliness_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>707 Chemical</td>
+                        <td>Did the previous shift leave reserves?</td>
                         <td>
-                            <select name="chemical_707" onchange="updateThumbs(this)" required>
+                            <select name="reserves" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="chemical_707_remarks" placeholder="Add remarks"></td>
+                        <td><input type="text" name="reserves_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>Knocker Loose Chemical</td>
+                        <td>Do we have chemicals?</td>
                         <td>
-                            <select name="chemical_knocker_loose" onchange="updateThumbs(this)" required>
+                            <select name="chemicals" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="chemical_knocker_loose_remarks" placeholder="Add remarks"></td>
+                        <td>
+                            <select name="chemical_details">
+                                <option value="">-- Select Chemical --</option>
+                                <option value="707">707</option>
+                                <option value="Knocker Loose">Knocker Loose</option>
+                                <option value="Air Lubricant">Air Lubricant</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Air Lubricant Chemical</td>
+                        <td>Is the trash emptied?</td>
                         <td>
-                            <select name="chemical_air_lubricant" onchange="updateThumbs(this)" required>
+                            <select name="trash" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="chemical_air_lubricant_remarks" placeholder="Add remarks"></td>
+                        <td><input type="text" name="trash_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>Box Machine 1 (Glue Tank)</td>
+                        <td>Is the conveyor working fine?</td>
                         <td>
-                            <select name="box_machine_1_glue" onchange="updateThumbs(this)" required>
+                            <select name="conveyor" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="box_machine_1_glue_remarks" placeholder="Add remarks"></td>
-                    </tr>
-                    <tr>
-                        <td>Box Machine 2 (Glue Tank)</td>
                         <td>
-                            <select name="box_machine_2_glue" onchange="updateThumbs(this)" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                            <select name="conveyor_issues">
+                                <option value="">-- Select Issue --</option>
+                                <option value="Misaligned Belt">Misaligned Belt</option>
+                                <option value="Obstruction">Obstruction</option>
+                                <option value="Motor Issue">Motor Issue</option>
+                                <option value="Other">Other</option>
                             </select>
-                            <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="box_machine_2_glue_remarks" placeholder="Add remarks"></td>
-                    </tr>
-                    <tr>
-                        <td>Box Machine 3 (Glue Tank)</td>
-                        <td>
-                            <select name="box_machine_3_glue" onchange="updateThumbs(this)" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <span class="thumb"></span>
-                        </td>
-                        <td><input type="text" name="box_machine_3_glue_remarks" placeholder="Add remarks"></td>
-                    </tr>
-                    <tr>
-                        <td>Box Machine 4 (Glue Tank)</td>
-                        <td>
-                            <select name="box_machine_4_glue" onchange="updateThumbs(this)" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <span class="thumb"></span>
-                        </td>
-                        <td><input type="text" name="box_machine_4_glue_remarks" placeholder="Add remarks"></td>
                     </tr>
                 </tbody>
             </table>
