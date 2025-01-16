@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Checklist Form</title>
+    <title>Startup Checklist</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,9 +19,22 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        header {
             text-align: center;
+            margin-bottom: 20px;
+        }
+        header img {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
             color: #333;
+        }
+        header .date {
+            font-size: 16px;
+            color: #555;
         }
         table {
             width: 100%;
@@ -78,6 +91,12 @@
         }
     </style>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateElement = document.querySelector('.date');
+            const today = new Date().toLocaleDateString();
+            dateElement.textContent = `Date: ${today}`;
+        });
+
         function updateThumbs(selectElement) {
             const row = selectElement.closest('tr');
             const thumb = row.querySelector('.thumb');
@@ -95,7 +114,11 @@
 </head>
 <body>
     <div class="form-container">
-        <h1>Inventory Checklist</h1>
+        <header>
+            <img src="pilgrims_logo_transparent.png" alt="Pilgrim's Logo">
+            <h1>Startup Checklist</h1>
+            <div class="date"></div>
+        </header>
         <form action="https://formspree.io/f/mdkkjgrr" method="POST">
             <table>
                 <thead>
@@ -119,52 +142,88 @@
                         <td><input type="text" name="cleanliness_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>Did the previous shift leave reserves?</td>
+                        <td>707 Chemical</td>
                         <td>
-                            <select name="reserves" onchange="updateThumbs(this)" required>
+                            <select name="chemical_707" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="reserves_remarks" placeholder="Add remarks"></td>
+                        <td><input type="text" name="chemical_707_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>Are there any rework wraps left over?</td>
+                        <td>Knocker Loose Chemical</td>
                         <td>
-                            <select name="rework_wraps" onchange="updateThumbs(this)" required>
+                            <select name="chemical_knocker_loose" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="rework_wraps_remarks" placeholder="Add remarks"></td>
+                        <td><input type="text" name="chemical_knocker_loose_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>Do we have chemicals (707, Knocker Loose, Air Lubricant)?</td>
+                        <td>Air Lubricant Chemical</td>
                         <td>
-                            <select name="chemicals" onchange="updateThumbs(this)" required>
+                            <select name="chemical_air_lubricant" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="chemicals_remarks" placeholder="Add remarks"></td>
+                        <td><input type="text" name="chemical_air_lubricant_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>Is the conveyor working fine?</td>
+                        <td>Box Machine 1 (Glue Tank)</td>
                         <td>
-                            <select name="conveyor" onchange="updateThumbs(this)" required>
+                            <select name="box_machine_1_glue" onchange="updateThumbs(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <span class="thumb"></span>
                         </td>
-                        <td><input type="text" name="conveyor_remarks" placeholder="Add remarks"></td>
+                        <td><input type="text" name="box_machine_1_glue_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Box Machine 2 (Glue Tank)</td>
+                        <td>
+                            <select name="box_machine_2_glue" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="box_machine_2_glue_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Box Machine 3 (Glue Tank)</td>
+                        <td>
+                            <select name="box_machine_3_glue" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="box_machine_3_glue_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Box Machine 4 (Glue Tank)</td>
+                        <td>
+                            <select name="box_machine_4_glue" onchange="updateThumbs(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <span class="thumb"></span>
+                        </td>
+                        <td><input type="text" name="box_machine_4_glue_remarks" placeholder="Add remarks"></td>
                     </tr>
                 </tbody>
             </table>
