@@ -61,8 +61,14 @@
             width: 100%;
             box-sizing: border-box;
         }
-        select {
-            background-color: #e6f7ff;
+        select[data-status="Good"] {
+            background-color: #d4edda;
+        }
+        select[data-status="Not Good"] {
+            background-color: #f8d7da;
+        }
+        select[data-status="Other"] {
+            background-color: #fff3cd;
         }
         .hidden {
             display: none;
@@ -111,6 +117,19 @@
                 otherField.classList.add('hidden');
             }
         }
+
+        function updateFieldColor(selectElement) {
+            const status = selectElement.value;
+            if (status === "Good") {
+                selectElement.style.backgroundColor = "#d4edda"; // Green
+            } else if (status === "Not Good" || status === "No") {
+                selectElement.style.backgroundColor = "#f8d7da"; // Red
+            } else if (status === "Other") {
+                selectElement.style.backgroundColor = "#fff3cd"; // Yellow
+            } else {
+                selectElement.style.backgroundColor = "#e6f7ff"; // Default
+            }
+        }
     </script>
 </head>
 <body>
@@ -141,7 +160,7 @@
                     <tr>
                         <td>Overall cleanliness of the Box Room</td>
                         <td>
-                            <select name="cleanliness" required>
+                            <select name="cleanliness" onchange="updateFieldColor(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Good">Good</option>
                                 <option value="Not Good">Not Good</option>
@@ -153,7 +172,7 @@
                     <tr>
                         <td>Weekly Safety Topic Available?</td>
                         <td>
-                            <select name="safety_topic" required>
+                            <select name="safety_topic" onchange="updateFieldColor(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -165,7 +184,7 @@
                     <tr>
                         <td>Do we have chemicals?</td>
                         <td>
-                            <select name="chemicals" onchange="toggleChecklist(this, 'chemicalsChecklist')" required>
+                            <select name="chemicals" onchange="updateFieldColor(this); toggleChecklist(this, 'chemicalsChecklist', 'Yes')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -187,7 +206,7 @@
                     <tr>
                         <td>Is the baler working properly?</td>
                         <td>
-                            <select name="baler" onchange="toggleChecklist(this, 'balerIssues', 'No')" required>
+                            <select name="baler" onchange="updateFieldColor(this); toggleChecklist(this, 'balerIssues', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -203,7 +222,7 @@
                     <tr>
                         <td>Are all box machines in good condition?</td>
                         <td>
-                            <select name="box_machines" onchange="toggleChecklist(this, 'boxMachinesChecklist', 'No')" required>
+                            <select name="box_machines" onchange="updateFieldColor(this); toggleChecklist(this, 'boxMachinesChecklist', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -228,7 +247,7 @@
                     <tr>
                         <td>Are the glue tanks properly filled up?</td>
                         <td>
-                            <select name="glue_tanks" onchange="toggleChecklist(this, 'glueTanksChecklist', 'No')" required>
+                            <select name="glue_tanks" onchange="updateFieldColor(this); toggleChecklist(this, 'glueTanksChecklist', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -249,7 +268,7 @@
                     <tr>
                         <td>Is the conveyor working fine?</td>
                         <td>
-                            <select name="conveyor" onchange="toggleChecklist(this, 'conveyorIssues', 'No')" required>
+                            <select name="conveyor" onchange="updateFieldColor(this); toggleChecklist(this, 'conveyorIssues', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -270,7 +289,7 @@
                     <tr>
                         <td>Are all lines in good condition?</td>
                         <td>
-                            <select name="lines" onchange="toggleChecklist(this, 'linesIssues', 'No')" required>
+                            <select name="lines" onchange="updateFieldColor(this); toggleChecklist(this, 'linesIssues', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
