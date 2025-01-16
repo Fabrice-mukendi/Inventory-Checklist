@@ -136,6 +136,43 @@
                         <td colspan="2"><input type="text" name="department" placeholder="Enter department/area" required></td>
                     </tr>
                     <tr>
+                        <td>Overall cleanliness of the Box Room</td>
+                        <td>
+                            <select name="cleanliness" required>
+                                <option value="">-- Select --</option>
+                                <option value="Good">Good</option>
+                                <option value="Not Good">Not Good</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="cleanliness_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Weekly Safety Topic Available?</td>
+                        <td>
+                            <select name="safety_topic" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="safety_topic_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Is the baler working properly?</td>
+                        <td>
+                            <select name="baler" onchange="toggleChecklist(this, 'balerIssues', 'No')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="balerIssues" class="hidden">
+                        <td>Specify Baler Issues</td>
+                        <td colspan="2"><input type="text" name="baler_issues" placeholder="Describe issues"></td>
+                    </tr>
+                    <tr>
                         <td>Are all box machines in good condition?</td>
                         <td>
                             <select name="box_machines" onchange="toggleChecklist(this, 'boxMachinesChecklist', 'No')" required>
@@ -153,6 +190,10 @@
                             <input type="text" id="boxMachine1Issues" name="box_machine_1_issue" placeholder="Specify issue" class="hidden">
                             <label><input type="checkbox" name="box_machine_2" onchange="toggleOtherField(this, 'boxMachine2Issues')"> Box Machine #2</label>
                             <input type="text" id="boxMachine2Issues" name="box_machine_2_issue" placeholder="Specify issue" class="hidden">
+                            <label><input type="checkbox" name="box_machine_3" onchange="toggleOtherField(this, 'boxMachine3Issues')"> Box Machine #3</label>
+                            <input type="text" id="boxMachine3Issues" name="box_machine_3_issue" placeholder="Specify issue" class="hidden">
+                            <label><input type="checkbox" name="box_machine_4" onchange="toggleOtherField(this, 'boxMachine4Issues')"> Box Machine #4</label>
+                            <input type="text" id="boxMachine4Issues" name="box_machine_4_issue" placeholder="Specify issue" class="hidden">
                         </td>
                     </tr>
                     <tr>
