@@ -62,13 +62,13 @@
             box-sizing: border-box;
         }
         select[data-status="Good"] {
-            background-color: #d4edda;
+            background-color: #00c853; /* Hard Green */
         }
         select[data-status="Not Good"] {
-            background-color: #f8d7da;
+            background-color: #d50000; /* Hard Red */
         }
         select[data-status="Other"] {
-            background-color: #fff3cd;
+            background-color: #ffd600; /* Hard Yellow */
         }
         .hidden {
             display: none;
@@ -120,12 +120,12 @@
 
         function updateFieldColor(selectElement) {
             const status = selectElement.value;
-            if (status === "Good") {
-                selectElement.style.backgroundColor = "#d4edda"; // Green
+            if (status === "Good" || status === "Yes") {
+                selectElement.style.backgroundColor = "#00c853"; // Hard Green
             } else if (status === "Not Good" || status === "No") {
-                selectElement.style.backgroundColor = "#f8d7da"; // Red
+                selectElement.style.backgroundColor = "#d50000"; // Hard Red
             } else if (status === "Other") {
-                selectElement.style.backgroundColor = "#fff3cd"; // Yellow
+                selectElement.style.backgroundColor = "#ffd600"; // Hard Yellow
             } else {
                 selectElement.style.backgroundColor = "#e6f7ff"; // Default
             }
