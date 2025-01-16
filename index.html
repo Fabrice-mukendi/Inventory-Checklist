@@ -9,15 +9,15 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f9;
+            background-color: #eef3f9;
         }
         .form-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         header {
             text-align: center;
@@ -29,7 +29,7 @@
         }
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 26px;
             color: #333;
         }
         header .date {
@@ -45,39 +45,31 @@
         th, td {
             padding: 12px;
             border: 1px solid #ddd;
-            text-align: center;
+            text-align: left;
         }
         th {
-            background-color: #f4f4f9;
+            background-color: #f7f9fc;
+            font-weight: bold;
         }
         select, input {
-            padding: 6px;
+            padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
-        }
-        .thumb {
-            display: inline-block;
-            font-size: 20px;
-            margin-left: 10px;
-        }
-        .thumb.green {
-            color: green;
-        }
-        .thumb.red {
-            color: red;
+            width: 100%;
+            box-sizing: border-box;
         }
         .hidden {
             display: none;
         }
         .submit-button {
             display: inline-block;
-            background-color: #4CAF50;
+            background-color: #007BFF;
             color: white;
             padding: 12px 20px;
             font-size: 16px;
             font-weight: bold;
             border: none;
-            border-radius: 25px;
+            border-radius: 5px;
             cursor: pointer;
             text-align: center;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -85,24 +77,23 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .submit-button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
             transform: translateY(-2px);
         }
         .submit-button:active {
             transform: translateY(0);
-            background-color: #3e8e41;
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const dateElement = document.querySelector('.date');
             const today = new Date().toLocaleDateString();
             dateElement.textContent = `Date: ${today}`;
         });
 
-        function toggleChecklist(selectElement, checklistId) {
+        function toggleChecklist(selectElement, checklistId, showOn = 'Yes') {
             const checklist = document.getElementById(checklistId);
-            if (selectElement.value === 'Yes') {
+            if (selectElement.value === showOn) {
                 checklist.classList.remove('hidden');
             } else {
                 checklist.classList.add('hidden');
@@ -111,7 +102,7 @@
 
         function toggleOtherField(selectElement, otherFieldId) {
             const otherField = document.getElementById(otherFieldId);
-            if (selectElement.value === 'Other') {
+            if (selectElement.checked) {
                 otherField.classList.remove('hidden');
             } else {
                 otherField.classList.add('hidden');
@@ -132,7 +123,7 @@
                     <tr>
                         <th>Item</th>
                         <th>Status</th>
-                        <th>Remarks</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,7 +144,7 @@
                                 <option value="No">No</option>
                             </select>
                         </td>
-                        <td><input type="text" name="reserves_remarks" placeholder="Add remarks"></td>
+                        <td></td>
                     </tr>
                     <tr id="reservesChecklist" class="hidden">
                         <td>Specify Reserves</td>
@@ -187,7 +178,7 @@
                     <tr>
                         <td>Is the conveyor working fine?</td>
                         <td>
-                            <select name="conveyor" onchange="toggleChecklist(this, 'conveyorIssues')" required>
+                            <select name="conveyor" onchange="toggleChecklist(this, 'conveyorIssues', 'No')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -203,6 +194,21 @@
                             <label><input type="checkbox" name="conveyor_issue_motor"> Motor Issue</label>
                             <label><input type="checkbox" name="conveyor_issue_noise"> Unusual Noise</label>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>Are all lines in good condition?</td>
+                        <td>
+                            <select name="lines" onchange="toggleChecklist(this, 'linesIssues', 'No')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="linesIssues" class="hidden">
+                        <td>Specify Line Issues</td>
+                        <td colspan="2"><input type="text" name="lines_issues" placeholder="Describe issues"></td>
                     </tr>
                     <tr>
                         <td>Is there any other hazard?</td>
@@ -223,21 +229,6 @@
                             <label><input type="checkbox" name="hazard_other" onchange="toggleOtherField(this, 'otherHazardField')"> Other</label>
                             <input type="text" id="otherHazardField" name="hazard_other_specify" placeholder="Specify other hazard" class="hidden">
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Are all lines in good condition?</td>
-                        <td>
-                            <select name="lines" onchange="toggleChecklist(this, 'linesIssues')" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr id="linesIssues" class="hidden">
-                        <td>Specify Line Issues</td>
-                        <td colspan="2"><input type="text" name="lines_issues" placeholder="Describe issues"></td>
                     </tr>
                 </tbody>
             </table>
