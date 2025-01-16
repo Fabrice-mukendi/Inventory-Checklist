@@ -66,6 +66,9 @@
         .thumb.red {
             color: red;
         }
+        .hidden {
+            display: none;
+        }
         .submit-button {
             display: inline-block;
             background-color: #4CAF50;
@@ -97,17 +100,21 @@
             dateElement.textContent = `Date: ${today}`;
         });
 
-        function updateThumbs(selectElement) {
-            const row = selectElement.closest('tr');
-            const thumb = row.querySelector('.thumb');
-            if (selectElement.value === 'Good' || selectElement.value === 'Yes') {
-                thumb.textContent = '👍';
-                thumb.className = 'thumb green';
-            } else if (selectElement.value === 'Not Good' || selectElement.value === 'No') {
-                thumb.textContent = '👎';
-                thumb.className = 'thumb red';
+        function toggleChecklist(selectElement, checklistId) {
+            const checklist = document.getElementById(checklistId);
+            if (selectElement.value === 'Yes') {
+                checklist.classList.remove('hidden');
             } else {
-                thumb.textContent = '';
+                checklist.classList.add('hidden');
+            }
+        }
+
+        function toggleOtherField(selectElement, otherFieldId) {
+            const otherField = document.getElementById(otherFieldId);
+            if (selectElement.value === 'Other') {
+                otherField.classList.remove('hidden');
+            } else {
+                otherField.classList.add('hidden');
             }
         }
     </script>
@@ -138,79 +145,99 @@
                         <td colspan="2"><input type="text" name="department" placeholder="Enter department/area" required></td>
                     </tr>
                     <tr>
-                        <td>Overall cleanliness of the Box Room</td>
-                        <td>
-                            <select name="cleanliness" onchange="updateThumbs(this)" required>
-                                <option value="">-- Select --</option>
-                                <option value="Good">Good</option>
-                                <option value="Not Good">Not Good</option>
-                            </select>
-                            <span class="thumb"></span>
-                        </td>
-                        <td><input type="text" name="cleanliness_remarks" placeholder="Add remarks"></td>
-                    </tr>
-                    <tr>
                         <td>Did the previous shift leave reserves?</td>
                         <td>
-                            <select name="reserves" onchange="updateThumbs(this)" required>
+                            <select name="reserves" onchange="toggleChecklist(this, 'reservesChecklist')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
-                            <span class="thumb"></span>
                         </td>
                         <td><input type="text" name="reserves_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr id="reservesChecklist" class="hidden">
+                        <td>Specify Reserves</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="reserve_boxes"> Boxes</label>
+                            <label><input type="checkbox" name="reserve_box_hands"> Box Hands</label>
+                            <label><input type="checkbox" name="reserve_wraps"> Wraps</label>
+                        </td>
                     </tr>
                     <tr>
                         <td>Do we have chemicals?</td>
                         <td>
-                            <select name="chemicals" onchange="updateThumbs(this)" required>
+                            <select name="chemicals" onchange="toggleChecklist(this, 'chemicalsChecklist')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
-                            <span class="thumb"></span>
                         </td>
-                        <td>
-                            <select name="chemical_details">
-                                <option value="">-- Select Chemical --</option>
-                                <option value="707">707</option>
-                                <option value="Knocker Loose">Knocker Loose</option>
-                                <option value="Air Lubricant">Air Lubricant</option>
-                            </select>
-                        </td>
+                        <td></td>
                     </tr>
-                    <tr>
-                        <td>Is the trash emptied?</td>
-                        <td>
-                            <select name="trash" onchange="updateThumbs(this)" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <span class="thumb"></span>
+                    <tr id="chemicalsChecklist" class="hidden">
+                        <td>Specify Chemicals</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="chemical_707"> 707</label>
+                            <label><input type="checkbox" name="chemical_knocker_loose"> Knocker Loose</label>
+                            <label><input type="checkbox" name="chemical_air_lubricant"> Air Lubricant Oil</label>
+                            <label><input type="checkbox" name="chemical_other" onchange="toggleOtherField(this, 'otherChemicalField')"> Other</label>
+                            <input type="text" id="otherChemicalField" name="chemical_other_specify" placeholder="Specify other chemical" class="hidden">
                         </td>
-                        <td><input type="text" name="trash_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
                         <td>Is the conveyor working fine?</td>
                         <td>
-                            <select name="conveyor" onchange="updateThumbs(this)" required>
+                            <select name="conveyor" onchange="toggleChecklist(this, 'conveyorIssues')" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
-                            <span class="thumb"></span>
                         </td>
+                        <td></td>
+                    </tr>
+                    <tr id="conveyorIssues" class="hidden">
+                        <td>Specify Conveyor Issues</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="conveyor_issue_misaligned_belt"> Misaligned Belt</label>
+                            <label><input type="checkbox" name="conveyor_issue_obstruction"> Obstruction</label>
+                            <label><input type="checkbox" name="conveyor_issue_motor"> Motor Issue</label>
+                            <label><input type="checkbox" name="conveyor_issue_noise"> Unusual Noise</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Is there any other hazard?</td>
                         <td>
-                            <select name="conveyor_issues">
-                                <option value="">-- Select Issue --</option>
-                                <option value="Misaligned Belt">Misaligned Belt</option>
-                                <option value="Obstruction">Obstruction</option>
-                                <option value="Motor Issue">Motor Issue</option>
-                                <option value="Other">Other</option>
+                            <select name="hazard" onchange="toggleChecklist(this, 'hazardChecklist')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </td>
+                        <td></td>
+                    </tr>
+                    <tr id="hazardChecklist" class="hidden">
+                        <td>Specify Hazards</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="hazard_spills"> Spills</label>
+                            <label><input type="checkbox" name="hazard_tripping"> Tripping Hazard</label>
+                            <label><input type="checkbox" name="hazard_other" onchange="toggleOtherField(this, 'otherHazardField')"> Other</label>
+                            <input type="text" id="otherHazardField" name="hazard_other_specify" placeholder="Specify other hazard" class="hidden">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Are all lines in good condition?</td>
+                        <td>
+                            <select name="lines" onchange="toggleChecklist(this, 'linesIssues')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="linesIssues" class="hidden">
+                        <td>Specify Line Issues</td>
+                        <td colspan="2"><input type="text" name="lines_issues" placeholder="Describe issues"></td>
                     </tr>
                 </tbody>
             </table>
