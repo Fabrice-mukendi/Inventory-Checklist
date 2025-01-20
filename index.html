@@ -102,4 +102,69 @@
 
         function toggleChecklist(selectElement, checklistId, showOn = 'Yes') {
             const checklist = document.getElementById(checklistId);
-   
+            if (selectElement.value === showOn) {
+                checklist.classList.remove('hidden');
+            } else {
+                checklist.classList.add('hidden');
+            }
+        }
+
+        function toggleOtherField(selectElement, otherFieldId) {
+            const otherField = document.getElementById(otherFieldId);
+            if (selectElement.checked) {
+                otherField.classList.remove('hidden');
+            } else {
+                otherField.classList.add('hidden');
+            }
+        }
+
+        function updateFieldColor(selectElement) {
+            const status = selectElement.value;
+            if (status === "Good" || status === "Yes") {
+                selectElement.style.backgroundColor = "#00c853"; // Hard Green
+            } else if (status === "Not Good" || status === "No") {
+                selectElement.style.backgroundColor = "#d50000"; // Hard Red
+            } else if (status === "Other") {
+                selectElement.style.backgroundColor = "#ffd600"; // Hard Yellow
+            } else {
+                selectElement.style.backgroundColor = "#e6f7ff"; // Default
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <header>
+            <img src="pilgrims_logo_transparent.png" alt="Pilgrim's Logo">
+            <h1>Startup Checklist</h1>
+            <div class="date"></div>
+        </header>
+        <form action="https://formspree.io/f/mdkkjgrr" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name of Person Completing Form</td>
+                        <td colspan="2"><input type="text" name="person_name" placeholder="Enter your name" required></td>
+                    </tr>
+                    <tr>
+                        <td>Department/Area</td>
+                        <td colspan="2"><input type="text" name="department" placeholder="Enter department/area" required></td>
+                    </tr>
+                    <!-- New Additions or Modifications as per insights -->
+                    <!-- Add your changes here -->
+                </tbody>
+            </table>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
