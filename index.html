@@ -170,80 +170,23 @@
                         <td><input type="text" name="cleanliness_remarks" placeholder="Add remarks"></td>
                     </tr>
                     <tr>
-                        <td>Weekly Safety Topic Available?</td>
+                        <td>Is the floor properly covered with clean cardboard to prevent cross-contamination?</td>
                         <td>
-                            <select name="safety_topic" onchange="updateFieldColor(this)" required>
+                            <select name="floor_covering" onchange="updateFieldColor(this)" required>
                                 <option value="">-- Select --</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="Other">Other</option>
                             </select>
                         </td>
-                        <td><input type="text" name="safety_topic_remarks" placeholder="Add remarks"></td>
+                        <td><input type="text" name="floor_covering_remarks" placeholder="Add remarks"></td>
                     </tr>
-                    <tr>
-                        <td>Do we have chemicals?</td>
-                        <td>
-                            <select name="chemicals" onchange="updateFieldColor(this); toggleChecklist(this, 'chemicalsChecklist', 'Yes')" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr id="chemicalsChecklist" class="hidden">
-                        <td>Specify Chemicals</td>
-                        <td colspan="2">
-                            <label><input type="checkbox" name="chemical_707"> 707</label>
-                            <label><input type="checkbox" name="chemical_knocker_loose"> Knocker Loose</label>
-                            <label><input type="checkbox" name="chemical_air_lubricant"> Air Lubricant Oil</label>
-                            <label><input type="checkbox" name="chemical_other" onchange="toggleOtherField(this, 'otherChemicalField')"> Other</label>
-                            <input type="text" id="otherChemicalField" name="chemical_other_specify" placeholder="Specify other chemical" class="hidden">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Is the baler working properly?</td>
-                        <td>
-                            <select name="baler" onchange="updateFieldColor(this); toggleChecklist(this, 'balerIssues', 'No')" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr id="balerIssues" class="hidden">
-                        <td>Specify Baler Issues</td>
-                        <td colspan="2"><input type="text" name="baler_issues" placeholder="Describe issues"></td>
-                    </tr>
-                    <tr>
-                        <td>Are all box machines in good condition?</td>
-                        <td>
-                            <select name="box_machines" onchange="updateFieldColor(this); toggleChecklist(this, 'boxMachinesChecklist', 'No')" required>
-                                <option value="">-- Select --</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr id="boxMachinesChecklist" class="hidden">
-                        <td>Specify Box Machines</td>
-                        <td colspan="2">
-                            <label><input type="checkbox" name="box_machine_1" onchange="toggleOtherField(this, 'boxMachine1Issues')"> Box Machine #1</label>
-                            <input type="text" id="boxMachine1Issues" name="box_machine_1_issue" placeholder="Specify issue" class="hidden">
-                            <label><input type="checkbox" name="box_machine_2" onchange="toggleOtherField(this, 'boxMachine2Issues')"> Box Machine #2</label>
-                            <input type="text" id="boxMachine2Issues" name="box_machine_2_issue" placeholder="Specify issue" class="hidden">
-                            <label><input type="checkbox" name="box_machine_3" onchange="toggleOtherField(this, 'boxMachine3Issues')"> Box Machine #3</label>
-                            <input type="text" id="boxMachine3Issues" name="box_machine_3_issue" placeholder="Specify issue" class="hidden">
-                            <label><input type="checkbox" name="box_machine_4" onchange="toggleOtherField(this, 'boxMachine4Issues')"> Box Machine #4</label>
-                            <input type="text" id="boxMachine4Issues" name="box_machine_4_issue" placeholder="Specify issue" class="hidden">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Are the glue tanks properly filled up?</td>
-                        <td>
+                </tbody>
+            </table>
+            <div style="text-align: center;">
+                <button type="submit" class="submit-button">Submit Checklist</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
