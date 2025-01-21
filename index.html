@@ -181,6 +181,139 @@
                         </td>
                         <td><input type="text" name="floor_covering_remarks" placeholder="Add remarks"></td>
                     </tr>
+                    <tr>
+                        <td>Weekly Safety Topic Available?</td>
+                        <td>
+                            <select name="safety_topic" onchange="updateFieldColor(this)" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="safety_topic_remarks" placeholder="Add remarks"></td>
+                    </tr>
+                    <tr>
+                        <td>Do we have chemicals?</td>
+                        <td>
+                            <select name="chemicals" onchange="toggleChecklist(this, 'chemicalsChecklist', 'Yes')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="chemicalsChecklist" class="hidden">
+                        <td>Specify Chemicals</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="chemical_707"> 707</label>
+                            <label><input type="checkbox" name="chemical_knocker_loose"> Knocker Loose</label>
+                            <label><input type="checkbox" name="chemical_air_lubricant"> Air Lubricant Oil</label>
+                            <label><input type="checkbox" name="chemical_other" onchange="toggleOtherField(this, 'otherChemicalField')"> Other</label>
+                            <input type="text" id="otherChemicalField" name="chemical_other_specify" placeholder="Specify other chemical" class="hidden">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Is the baler working properly?</td>
+                        <td>
+                            <select name="baler" onchange="updateFieldColor(this); toggleChecklist(this, 'balerIssues', 'No')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="balerIssues" class="hidden">
+                        <td>Specify Baler Issues</td>
+                        <td colspan="2"><input type="text" name="baler_issues" placeholder="Describe issues"></td>
+                    </tr>
+                    <tr>
+                        <td>Are all box machines in good condition?</td>
+                        <td>
+                            <select name="box_machines" onchange="updateFieldColor(this); toggleChecklist(this, 'boxMachinesChecklist', 'No')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="boxMachinesChecklist" class="hidden">
+                        <td>Specify Box Machines</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="box_machine_1" onchange="toggleOtherField(this, 'boxMachine1Issues')"> Box Machine #1</label>
+                            <input type="text" id="boxMachine1Issues" name="box_machine_1_issue" placeholder="Specify issue" class="hidden">
+                            <label><input type="checkbox" name="box_machine_2" onchange="toggleOtherField(this, 'boxMachine2Issues')"> Box Machine #2</label>
+                            <input type="text" id="boxMachine2Issues" name="box_machine_2_issue" placeholder="Specify issue" class="hidden">
+                            <label><input type="checkbox" name="box_machine_3" onchange="toggleOtherField(this, 'boxMachine3Issues')"> Box Machine #3</label>
+                            <input type="text" id="boxMachine3Issues" name="box_machine_3_issue" placeholder="Specify issue" class="hidden">
+                            <label><input type="checkbox" name="box_machine_4" onchange="toggleOtherField(this, 'boxMachine4Issues')"> Box Machine #4</label>
+                            <input type="text" id="boxMachine4Issues" name="box_machine_4_issue" placeholder="Specify issue" class="hidden">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Are the glue tanks properly filled up?</td>
+                        <td>
+                            <select name="glue_tanks" onchange="updateFieldColor(this); toggleChecklist(this, 'glueTanksChecklist', 'No')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="glueTanksChecklist" class="hidden">
+                        <td>Specify Glue Tanks</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="glue_tank_1"> Glue Tank Box Machine #1</label>
+                            <label><input type="checkbox" name="glue_tank_2"> Glue Tank Box Machine #2</label>
+                            <label><input type="checkbox" name="glue_tank_3"> Glue Tank Box Machine #3</label>
+                            <label><input type="checkbox" name="glue_tank_4"> Glue Tank Box Machine #4</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Is the conveyor working fine?</td>
+                        <td>
+                            <select name="conveyor" onchange="updateFieldColor(this); toggleChecklist(this, 'conveyorIssues', 'No')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="conveyorIssues" class="hidden">
+                        <td>Specify Conveyor Issues</td>
+                        <td colspan="2">
+                            <label><input type="checkbox" name="conveyor_issue_misaligned_belt"> Misaligned Belt</label>
+                            <label><input type="checkbox" name="conveyor_issue_obstruction"> Obstruction</label>
+                            <label><input type="checkbox" name="conveyor_issue_motor"> Motor Issue</label>
+                            <label><input type="checkbox" name="conveyor_issue_noise"> Unusual Noise</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Are all lines in good condition?</td>
+                        <td>
+                            <select name="lines" onchange="updateFieldColor(this); toggleChecklist(this, 'linesIssues', 'No')" required>
+                                <option value="">-- Select --</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr id="linesIssues" class="hidden">
+                        <td>Specify Line Issues</td>
+                        <td colspan="2"><input type="text" name="lines_issues" placeholder="Describe issues"></td>
+                    </tr>
                 </tbody>
             </table>
             <div style="text-align: center;">
